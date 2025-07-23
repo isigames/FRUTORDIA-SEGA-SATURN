@@ -1,0 +1,32 @@
+DIBIDIDOO!!!
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXK00OOO0KXXNWWMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMWKkdllllllllllloddk0XWMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMWXklccclloooooooollllloONMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMWKxlllllloooooooooodooolokXWMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMN0dllllllllllllooodddddoollxKWMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMNOolllloll::;;;;;:cloddddoooodONMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMNkollllllc:;;,,,,,,;;cloodddooooONMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMWOllllllllc:;,,'..',;::cloooooooldKMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMXdcloollllc:;:c;'',:lcccllooooooloOWMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMWOoloooooollccccc:::cllllloodoooollxNMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMXxllooooolllllllloooooolloodddoolllo0WMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMNkollooooooooooooooooooooooddddooollldKWMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMWKdllloooododoollllooooollclooddddooollloOWMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMWOlclloooooollccccccccccccc:ccloooooollccxXMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMW0oclllooollc::ccllllcclllcc::cclllolllclkNMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMNOolllloollc:;,;:cclllcc:;,;:cclloollllxXWMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMW0olllooooolc:::cccclcc::::clooooolllxXMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMNOoloodddddoollllllllllloooddddoolloKWMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMXxlloodddddoooooooooooooddddddollo0WMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMXxlllooooooooooddddodddddoooollo0WMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMXxccclllooooodddddoooooolllcco0WMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMW0l::cccclloooooooooollcccc:cxNMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMWXOdc;';:::::::cccccccccc::::::;,,:ok0NWMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMNOl,.   .,::::;;;;:::;;;;;:::::::;..  ..;dKWMMMMMMMMMMMM
+MMMMMMMMMMMMMMMNx'.     .';:::;;;;;;;;;;;;;;:::::;.      .:0WMMMMMMMMMMM
+MMMMMMMMMMMMMMMK:.       .,:c::::;;;;;;;;;::::cc:'.      ..oNMMMMMMMMMMM
+MMMMMMMMMMMMMMWk,.       .';cccc::::::::::::ccc:,.        .cXMMMMMMMMMMM
+MMMMMWWNXK0Okxl,.         .';:cccccccccccccccc:;.          .:dkO0KXNWWMM
+MMKdcc:;,.....             .';cllllcllllcllll:,..            .....',:cll
+MMk'.................      ..':::::::::::c:::,....    ..................
+DIBIDIDOO!!!
