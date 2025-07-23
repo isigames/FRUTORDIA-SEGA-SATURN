@@ -24,6 +24,36 @@
 ** ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 ** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 ** SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. DIBIDIDOO!!!
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXK00OOO0KXXNWWMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMWKkdllllllllllloddk0XWMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMWXklccclloooooooollllloONMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMWKxlllllloooooooooodooolokXWMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMN0dllllllllllllooodddddoollxKWMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMNOolllloll::;;;;;:cloddddoooodONMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMNkollllllc:;;,,,,,,;;cloodddooooONMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMWOllllllllc:;,,'..',;::cloooooooldKMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMXdcloollllc:;:c;'',:lcccllooooooloOWMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMWOoloooooollccccc:::cllllloodoooollxNMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMXxllooooolllllllloooooolloodddoolllo0WMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMNkollooooooooooooooooooooooddddooollldKWMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMWKdllloooododoollllooooollclooddddooollloOWMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMWOlclloooooollccccccccccccc:ccloooooollccxXMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMW0oclllooollc::ccllllcclllcc::cclllolllclkNMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMNOolllloollc:;,;:cclllcc:;,;:cclloollllxXWMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMW0olllooooolc:::cccclcc::::clooooolllxXMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMNOoloodddddoollllllllllloooddddoolloKWMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMXxlloodddddoooooooooooooddddddollo0WMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMXxlllooooooooooddddodddddoooollo0WMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMXxccclllooooodddddoooooolllcco0WMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMW0l::cccclloooooooooollcccc:cxNMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMWXOdc;';:::::::cccccccccc::::::;,,:ok0NWMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMNOl,.   .,::::;;;;:::;;;;;:::::::;..  ..;dKWMMMMMMMMMMMM
+MMMMMMMMMMMMMMMNx'.     .';:::;;;;;;;;;;;;;;:::::;.      .:0WMMMMMMMMMMM
+MMMMMMMMMMMMMMMK:.       .,:c::::;;;;;;;;;::::cc:'.      ..oNMMMMMMMMMMM
+MMMMMMMMMMMMMMWk,.       .';cccc::::::::::::ccc:,.        .cXMMMMMMMMMMM
+MMMMMWWNXK0Okxl,.         .';:cccccccccccccccc:;.          .:dkO0KXNWWMM
+MMKdcc:;,.....             .';cllllcllllcllll:,..            .....',:cll
+MMk'.................      ..':::::::::::c:::,....    ..................
 */
 
 #include <jo/jo.h>
@@ -128,10 +158,8 @@ void jo_main(void)
 	jo_sprite_add_tga("TEX", "DIBIDI.TGA", JO_COLOR_RGB(255,0,255));	//INDEX: 13
 	jo_sprite_add_tga("BG", "SKY.TGA", JO_COLOR_RGB(255,0,255));	//INDEX: 14
 
-	load_drv(ADX_MASTER_2304);
-	snd_dibidi = load_16bit_pcm((Sint8 *)"DIBIDI.PCM", 20500);
-
-
+	//load_drv(ADX_MASTER_2304);
+	//snd_dibidi = load_16bit_pcm((Sint8 *)"DIBIDI.PCM", 20500);
 
 	//title screen fruits
 	for (int i = 0; i < TITLE_FRUITS; i++){
@@ -151,7 +179,7 @@ void jo_main(void)
 
 	jo_core_add_callback(state_loop);
 	jo_core_add_vblank_callback(sdrv_vblank_rq);
-	
+
 	jo_core_run();
 }
 
@@ -363,7 +391,7 @@ void player_jump(void){
 	if (!player_jumping){
 		player_jumping = true;
 		y_speed = 7.2;
-		pcm_play(snd_dibidi, PCM_SEMI, 6);
+		//pcm_play(snd_dibidi, PCM_SEMI, 6);
 	}
 
 }
