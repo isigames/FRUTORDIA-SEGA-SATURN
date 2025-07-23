@@ -1,0 +1,3 @@
+//EN AUDACITY SUBIR LA VELOCIDAD POR 5.9
+//USAR ESTE COMANDO
+ffmpeg -i C:\Users\Usuario\Downloads\dibididoo.wav -f s16be -ac 1 -ar 44100 C:\Users\Usuario\Downloads\DIBIDI.PCM
