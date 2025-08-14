@@ -66,6 +66,20 @@ MMk'.................      ..':::::::::::c:::,....    ..................
 static jo_palette      palette1;
 
 short snd_dibidi;
+short snd_ground;
+short snd_nop;
+short snd_yep;
+short snd_gulp;
+short snd_2;
+short snd_3;
+short snd_roadblock;
+short snd_explosion;
+short snd_apple;
+short snd_orange;
+short snd_straw;
+short snd_pear;
+short snd_pine;
+short snd_water;
 
 typedef enum {
 	STATE_MENU,
@@ -84,7 +98,6 @@ int score = 0;
 bool player_jumping = false;
 float x_speed = 0.0f;
 float y_speed = 0.0f;
-static jo_sound dibidi;
 bool cd_playing = false;
 int current_cd_track = 0;
 int fruit_select = 0;
@@ -101,6 +114,7 @@ int hud_state = 0;
 int hud_timer = 0;
 int speed_up_timer = 0;
 int y_end = -200;
+
 
 typedef struct{
 	int x;
@@ -200,6 +214,7 @@ jo_palette      *my_tga_palette_handling(void)
 void jo_main(void)
 {
 	jo_core_init(JO_COLOR_Black);
+
 	jo_sprite_restore_sprite_scale();
 	jo_set_tga_palette_handling(my_tga_palette_handling);
 	jo_sprite_add_tga("TEX", "VOID.TGA", 228);	//INDEX: 0
@@ -256,8 +271,6 @@ void jo_main(void)
 	jo_sprite_add_tga("TEX", "DIBIZUL.TGA", 228);	//INDEX: 41
 	jo_sprite_add_tga("BG", "END.TGA", 228);	//INDEX: 42
 
-	//load_drv(ADX_MASTER_2304);
-	//snd_dibidi = load_16bit_pcm((Sint8 *)"DIBIDI.PCM", 20500);
 
 	//title screen fruits
 	for (int i = 0; i < TITLE_FRUITS; i++){
@@ -275,9 +288,26 @@ void jo_main(void)
 		fruits_array[i].sprite = random_in_range(6, 12);
 	}
 
-	jo_core_add_callback(state_loop);
-	jo_core_add_vblank_callback(sdrv_vblank_rq);
+	load_drv(ADX_MASTER_2304);
+	snd_dibidi = load_8bit_pcm((Sint8 *)"DIBIDI.PCM", 11025);
+	snd_ground = load_8bit_pcm((Sint8 *)"GROUND.PCM", 8000);
+	snd_nop = load_8bit_pcm((Sint8 *)"NOP.PCM", 11025);
+	snd_yep = load_8bit_pcm((Sint8 *)"YEP.PCM", 11025);
+	snd_gulp = load_8bit_pcm((Sint8 *)"GULP.PCM", 11025);
+	snd_2 = load_8bit_pcm((Sint8 *)"2.PCM", 11025);
+	snd_3 = load_8bit_pcm((Sint8 *)"3.PCM", 11025);
+	snd_roadblock = load_8bit_pcm((Sint8 *)"ROAD.PCM", 11025);
+	snd_explosion = load_8bit_pcm((Sint8 *)"EXPL.PCM", 11025);
+	snd_apple = load_8bit_pcm((Sint8 *)"6.PCM", 20500);
+	snd_orange = load_8bit_pcm((Sint8 *)"7.PCM", 11050);
+	snd_straw = load_8bit_pcm((Sint8 *)"8.PCM", 20500);
+	snd_pear = load_8bit_pcm((Sint8 *)"9.PCM", 11050);
+	snd_pine = load_8bit_pcm((Sint8 *)"10.PCM", 20500);
+	snd_water = load_8bit_pcm((Sint8 *)"11.PCM", 20500);
 
+	jo_core_add_callback(state_loop);
+	
+	jo_core_add_vblank_callback(sdrv_vblank_rq);
 	jo_core_run();
 }
 
@@ -290,7 +320,8 @@ void draw_menu(void){
 	jo_set_default_background_color(JO_COLOR_RGB(115, 214, 255));
 	frutordia_title();
 	title_fruits();
-	play_track(2);
+	CDDA_SetVolume(7);
+	Play(2,2,true);
 	player_move = false;
 	game_run = false;
 
@@ -376,9 +407,10 @@ void draw_story(void){
     jo_clear_screen();
     jo_set_printf_color_index(JO_COLOR_INDEX_White);
 	jo_set_default_background_color(JO_COLOR_RGB(0, 0, 0));
-	jo_sprite_draw3D(2, 0, 0, 100);
-	jo_sprite_draw3D(32, 0, 115, 100);
-	play_track(3);
+	jo_sprite_draw3D(2, 0, -10, 100);
+	jo_sprite_draw3D(32, 0, 105, 100);
+	pcm_cease(snd_dibidi);
+	Play(3,3,true);
 
 	if (jo_is_pad1_key_down(JO_KEY_B)) {
         current_state = STATE_MENU;
@@ -407,7 +439,7 @@ void draw_game(void){
 	else{
 		jo_sprite_draw3D(13, player_x, player_y, 100);
 	}
-	jo_sprite_draw3D((fruit_select + 20), 0, 90, 100);
+	jo_sprite_draw3D((fruit_select + 20), 0, 80, 100);
 
 	if (score < 0){ score = 0;}
 	//HUD
@@ -415,17 +447,44 @@ void draw_game(void){
 	jo_sprite_draw3D((get_digit_from_left(score, 0) + 15), -78, -99, 100);
 	jo_sprite_draw3D((get_digit_from_left(score, 1) + 15), -62, -99, 100);
 	jo_sprite_draw3D((get_digit_from_left(score, 2) + 15), -46, -99, 100);
-	jo_sprite_draw3D(fruit_select, 140, 104, 100);
+	jo_sprite_draw3D(fruit_select, 140, 94, 100);
 
 	//so this whole thing is the 3, 2, 1, start!
-	if (timer == 0 || timer == 30){ hud_size = 0.1; }
+	if (timer == 1){ //I AM ABOUT TO DO THE MOST DISGUSTING PROGRAMMING THING EVER, I-M LAZY, TOO LAZY TO DO THIS, DEAL WITH MY BAD CODE I COULDN-T CARE LESS, IF IT WORKS, IT WORKS.
+		if (fruit_select == 6){
+		pcm_play(snd_apple, PCM_SEMI, 7);
+		}
+		else if (fruit_select == 7){
+		pcm_play(snd_orange, PCM_SEMI, 7);
+		}
+		else if (fruit_select == 8){
+		pcm_play(snd_straw, PCM_SEMI, 7);
+		}
+		else if (fruit_select == 9){
+		pcm_play(snd_pear, PCM_SEMI, 7);
+		}
+		else if (fruit_select == 10){
+		pcm_play(snd_pine, PCM_SEMI, 7);
+		}
+		else{
+		pcm_play(snd_water, PCM_SEMI, 7);
+		}
+		
+
+	} 
+	if (timer == 0 || timer == 30){ 
+		hud_size = 0.1;
+		pcm_play(snd_2, PCM_SEMI, 7); }
+	if (timer == 61){
+		pcm_play(snd_3, PCM_SEMI, 7);
+	}
 
 	if (hud_size > 1){ hud_size = 1; }	
 
 	if (hud_size != 1){ hud_size += 0.1; }
 
 	if (timer < 30){
-		jo_audio_stop_cd();
+		CDDA_Stop();
 		jo_sprite_change_sprite_scale(hud_size);
 		jo_sprite_draw3D(37, 0, 0, 100);
 		jo_sprite_restore_sprite_scale();
@@ -449,7 +508,7 @@ void draw_game(void){
 		jo_sprite_draw3D(0, 555, 0, 100);
 		player_move = true;
 		game_run = true;
-		play_track(4);
+		Play(4,4,true);
 	}
 	else {
 		jo_sprite_draw3D(0, 555, 0, 100);
@@ -557,16 +616,19 @@ void game_fruits(void){
 					hud_state = 0;
 					fruit_hud_state = 0;
 					hud_state = -1;
+					pcm_play(snd_explosion, PCM_SEMI, 6);
 
 				}
 				else if (fruits_array[i].sprite == 33){
 					speed_up_timer = 272;
 					speed_up = true;
+					pcm_play(snd_roadblock, PCM_SEMI, 7);
 				}
 				else if (fruits_array[i].sprite != fruit_select){
 					if (speed_up == true){
 						fruit_hud_state = 0;
 						hud_state = -2;
+						pcm_play(snd_gulp, PCM_SEMI, 7);
 					}else{
 						score -= 15; //incorrect fruit
 						hud_rotation = 0;
@@ -575,6 +637,7 @@ void game_fruits(void){
 						hud_state = 0;
 						fruit_hud_state = 0;
 						hud_state = -1;
+						pcm_play(snd_nop, PCM_SEMI, 7);
 					}
 
 				}
@@ -586,6 +649,7 @@ void game_fruits(void){
 					hud_state = 0;
 					fruit_hud_state = 0;
 					hud_state = 1;
+					pcm_play(snd_yep, PCM_SEMI, 7);
 				}
 
 			fruits_array[i].x = random_in_range(-160, 160);
@@ -599,6 +663,7 @@ void game_fruits(void){
 			}
 
 			if (fruits_array[i].y > 60){
+			pcm_play(snd_ground, PCM_PROTECTED, 7);
 			fruits_array[i].x = random_in_range(-160, 160);
 			fruits_array[i].y = random_in_range(-992, -192);
 			fruits_array[i].rot = random_in_range(0, 72);
@@ -687,19 +752,46 @@ void fruit_hud(void){
 
 void play_track(int track_number){
 	if (current_cd_track != track_number){
-	jo_audio_stop_cd();
-	jo_audio_play_cd_track(track_number, track_number,true);
+	CDDA_Stop();
+	CDDA_PlaySingle(track_number, true);
 	current_cd_track = track_number;
 	cd_playing = true;
 	}
 }
+
+
+void Play(const unsigned short fromTrack, const unsigned short toTrack, const bool loop)
+{
+	if (current_cd_track != fromTrack){
+    // Prepare playback
+    CdcPly ply;
+
+    // Start track
+    CDC_PLY_STYPE(&ply) = CDC_PTYPE_TNO;
+    CDC_PLY_STNO(&ply) = fromTrack;
+    CDC_PLY_SIDX(&ply) = 1;
+
+    // End track
+    CDC_PLY_ETYPE(&ply) = CDC_PTYPE_TNO;
+    CDC_PLY_ETNO(&ply) = toTrack;
+    CDC_PLY_EIDX(&ply) = 1;
+
+    // Set loop mode
+    CDC_PLY_PMODE(&ply) = CDC_PM_DFL | (loop ? 0xf : 0); // 0xf = infinite repetitions
+
+    CDC_CdPlay(&ply);
+
+	current_cd_track = fromTrack;
+	}
+}
+
 
 void player_jump(void){
 
 	if (!player_jumping){
 		player_jumping = true;
 		y_speed = 7.2;
-		//pcm_play(snd_dibidi, PCM_SEMI, 6);
+		pcm_play(snd_dibidi, PCM_SEMI, 7);
 	}
 
 }
@@ -707,7 +799,7 @@ void player_jump(void){
 void the_end_is_near(void){
 
 	if (score >= 100){
-		jo_audio_stop_cd();
+		CDDA_Stop();
 		game_run = false;
 		player_move = false;
 		jo_sprite_draw3D(42, 0, y_end, 100);
@@ -726,7 +818,7 @@ void ending(void){
     jo_set_printf_color_index(JO_COLOR_INDEX_White);
 	jo_set_default_background_color(JO_COLOR_RGB(0, 0, 0));
 	jo_sprite_draw3D(42, 0, 0, 100);
-	play_track(5);
+	Play(5,5,true);
 
 	if (jo_is_pad1_key_down(JO_KEY_C)) {
         current_state = STATE_MENU;

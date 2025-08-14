@@ -12,3 +12,6 @@ FILE "track2.wav" WAVE
 FILE "track3.wav" WAVE
   TRACK 04 AUDIO
     INDEX 01 00:00:00
+FILE "track4.wav" WAVE
+  TRACK 05 AUDIO
+    INDEX 01 00:00:00
